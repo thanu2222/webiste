@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gamez</title>
+    <link type="text/css" rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Gamez</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li>
+                <a href="/wii">Country</a>
+            </li>
+        <form method="Post" action="/search">
+            <input type="text" name="search" id="search">
+            <input type="submit" value="Search">
+        </form>
+    </nav>
+
+    <main>
+        {% if items != [] %}
+            {% if searched == True %}
+                <h2>Searching for {{ name }}</h2>
+            {% else %}
+                <h2>{{ name }}</h2>
+            {% endif %}
+            <table>
+                <thead>
+                    <tr>
+                        <td>Rank</td>
+                        <td>Game Title</td>
+                        <td>Platform</td>
+                        <td>Year</td>
+                        <td>FA</td>
+                        <td>Publisher</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                {% for item in items %}
+                    <tr>
+                        <td>{{ item[0] }}</td>
+                        <td>{{ item[1] }}</td>
+                        <td>{{ item[2] }}</td>
+                        <td>{{ item[3] }}</td>
+                        <td>{{ item[4] }}</td>
+                        <td>{{ item[5] }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <h2>No results for {{ name }}</h2>
+        {% endif %}
+    </main>
+</body>
+</html>
